@@ -45,9 +45,15 @@ class Task
      */
     private $taskLabels;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=MediaObject::class, inversedBy="tasks")
+     */
+    private $file;
+
     public function __construct()
     {
         $this->taskLabels = new ArrayCollection();
+        $this->file = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -117,6 +123,30 @@ class Task
                 $taskLabel->setTask(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MediaObject[]
+     */
+    public function getFile(): Collection
+    {
+        return $this->file;
+    }
+
+    public function addFile(MediaObject $file): self
+    {
+        if (!$this->file->contains($file)) {
+            $this->file[] = $file;
+        }
+
+        return $this;
+    }
+
+    public function removeFile(MediaObject $file): self
+    {
+        $this->file->removeElement($file);
 
         return $this;
     }
