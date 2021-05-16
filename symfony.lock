@@ -114,6 +114,9 @@
     "gedmo/doctrine-extensions": {
         "version": "v3.0.5"
     },
+    "imagine/imagine": {
+        "version": "1.2.4"
+    },
     "jms/metadata": {
         "version": "2.5.0"
     },
@@ -234,9 +237,6 @@
         "files": [
             "config/packages/dev/debug.yaml"
         ]
-    },
-    "symfony/debug-pack": {
-        "version": "v1.0.9"
     },
     "symfony/dependency-injection": {
         "version": "v4.4.22"
@@ -414,9 +414,6 @@
     },
     "symfony/process": {
         "version": "v4.4.22"
-    },
-    "symfony/profiler-pack": {
-        "version": "v1.0.5"
     },
     "symfony/property-access": {
         "version": "v4.4.20"

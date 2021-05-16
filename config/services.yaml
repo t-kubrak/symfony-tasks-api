@@ -33,3 +33,7 @@ services:
     App\Service\FileUploader:
         arguments:
             $targetDirectory: '%brochures_directory%'
+
+    App\Command\AddDataCommand:
+        arguments:
+            $targetDirectory: '%brochures_directory%'
