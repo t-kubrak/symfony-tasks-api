@@ -9,12 +9,11 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/universe.dart.spb/tkubrak/Documents/dev/symfony/symfony-tasks-api/src/Controller/ProductController.php'|file_link(0) }}">src/Controller/ProductController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/universe.dart.spb/tkubrak/Documents/dev/symfony/symfony-tasks-api/templates/product/index.html.twig'|file_link(0) }}">templates/product/index.html.twig</a></code></li>
-    </ul>
+    {{ board }}
+        {% if tasks is defined %}
+            {% for task in tasks %}
+                <p>{{ task.name }}</p>
+            {% endfor %}
+        {% endif %}
 </div>
 {% endblock %}

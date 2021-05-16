@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Board;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +20,30 @@ class BoardRepository extends ServiceEntityRepository
         parent::__construct($registry, Board::class);
     }
 
-    // /**
-    //  * @return Board[] Returns an array of Board objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+    * @return Board
+    */
+    public function findByName($value)
     {
         return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
+            ->andWhere('b.name = :val')
             ->setParameter('val', $value)
             ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Board
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+
+    public function findByJoin($value): array
+    {
+        return $this->createQueryBuilder('b')
+            ->innerJoin('b.tasks', 't')
+            ->andWhere('b.name = :val')
+            ->setParameter('val', $value)
+            ->select('b.name as board_name', 't.name as task_name')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 }
